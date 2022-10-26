@@ -21,6 +21,17 @@ console.log(__dirname)
 
 app.use(express.static(join(__dirname, '../client/build')))
 
+app.get('*',(req, res)=>{
+  res.sendFile(join(__dirname, '../client/build/index.html'))
+})
+
 export default app;
 
 //este archivo configura express
+
+
+/*
+en node package.json
+ "build":"npm install --prefix client && npm run build --prefix client && rmdir node_modules",
+ si heroku no lo elimina
+*/

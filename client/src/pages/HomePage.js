@@ -6,14 +6,23 @@ import { PostCard } from "../components/PostCard";
 export const HomePage = () => {
   const { posts } = usePosts();
 
-  if (posts.length === 0)
+  const renderMain = () => {
+    if (posts.length === 0)
+      return (
+        <div className="flex flex-col justify-center items-center text-white">
+          <VscEmptyWindow className="w-48 h-48" />
+          <h1 className="text-2xl">There are not posts</h1>
+        </div>
+      );
+
     return (
-      <div className="flex flex-col justify-center items-center text-white">
-        <Link to="/new">Create New Post</Link>
-        <VscEmptyWindow className="w-48 h-48" />
-        <h1 className="text-2xl">There are not posts</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-10">
+        {posts.map((post) => {
+          return <PostCard post={post} key={post._id} />;
+        })}
       </div>
     );
+  };
 
   return (
     <div className="text-white">
@@ -28,11 +37,7 @@ export const HomePage = () => {
           Create New Post
         </Link>
       </header>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-10">
-        {posts.map((post) => {
-          return <PostCard post={post} key={post._id} />;
-        })}
-      </div>
+      {renderMain()}
     </div>
   );
 };
