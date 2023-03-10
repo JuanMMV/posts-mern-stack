@@ -46,5 +46,5 @@
     "postcss": "^8.4.18",
     "tailwindcss": "^3.2.0"
   },
-  "proxy":"http://conexion:4000/"
+  "proxy":"http://conexion-backend:4000/"
 }
